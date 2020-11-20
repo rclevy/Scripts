@@ -80,6 +80,6 @@ flux_ratio = 10**(-target_A/2.5)
 #print the results
 print('Reference extinction: A_'+ref_wl_str+' = %.1f mag' %(ref_A))
 print('Target extinction: A_'+target_wl_str+' = %.1f mag' %(target_A))
-print('Flux ratio: F_'+target_wl_str+'/F_'+ref_wl_str+' = %.3f' %(flux_ratio))
+print('Flux ratio: F_extincted/F_intrinsic = %.3f at %s um' %(flux_ratio,target_wl_str))
 
 
