@@ -1,5 +1,3 @@
-#check te PSF of the combined continuum data
-
 this_script = __file__
 
 import argparse
