@@ -34,12 +34,13 @@ def error_propagation(func,variables,values,uncerts):
 	>>> from ErrorPropagation import error_propagation
 	>>> import numpy as np
 	>>> def func(x,y):
-	>>>	# z = 2xy^2-5
+	>>>		# z = 2xy^2-5
 	>>> 	return 2.0*x*y**2-5.0
 	>>> variables = ('x','y')
 	>>> values = (np.linspace(1,10,10),np.linspace(-10,-1,10))
 	>>> uncerts = (np.linspace(1,10,10)/10,np.linspace(-10,-1,10)/5)
 	>>> z,ez = error_propagation(func,variables,values,uncerts)
+	>>> [print('%g +/- %g' %(z[i],ez[i])) for i in range(len(z))];
 	'''
 
 	import numpy as np
