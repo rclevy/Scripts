@@ -39,7 +39,7 @@ def mk_great_footprint(center,array_rot=0.,which_config='LFA',color='green'):
 	'''
 
 	import numpy as np
-	from astropy.coordinates import SkyCoord,Angle,concatenate,SkyOffsetFrame
+	from astropy.coordinates import SkyCoord,Angle,concatenate
 	from regions import CircleSkyRegion,Regions
 
 
