@@ -28,6 +28,7 @@ def mk_great_footprint(center,array_rot=0.,which_config='LFA',color='green'):
 	Change log:
 		2022-01-21 : file created
 
+
 	Examples
 	--------
 	>> ipython
@@ -52,7 +53,7 @@ def mk_great_footprint(center,array_rot=0.,which_config='LFA',color='green'):
 		radius = Angle(6.3/2,'arcsec')
 		separation = Angle(13.8,'arcsec')
 	else:
-		print('Error: Only LFA and HFA configurations are supported.\nPlease try again with either mk_great_footprint(center,array_rot,"LFA") or mk_great_footprint(center,array_rot,"HFA").')
+		print("Error: Only LFA and HFA configurations are supported.\nPlease try again with either mk_great_footprint(center,which_config='LFA') or mk_great_footprint(center,which_config='HFA').")
 		return
 
 	#get coordinates of the surrounding pixels
