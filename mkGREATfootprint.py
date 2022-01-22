@@ -1,44 +1,52 @@
 def mk_great_footprint(center,array_rot=0.,which_config='LFA',color='green'):
-	#make a DS9 region file of the SOFIA upGREAT footprint
-	#given some center (passed in as a SkyCoord) and array rotation angle (degrees)
-	#specify which configuration (LFA or HFA)
-	#can optically specify region color (default green)
-	#
-	#requires numpy, astropy, and regions
-	#
-	#written by Rebecca Levy (rlevy.astro@gmail.com)
-	#last updated 2022-01-21
+	r'''
+	Make a DS9 region file of the upGREAT LFA or HFA footprint given some center position.
+
+	Parameters
+	----------
+	center : SkyCoord
+		central RA and Dec passed in as an astropy SkyCoord
+	array_rot : float
+		rotation angle of the array in degrees, default is 0
+	which_config : string
+		only the LFA and HFA configurations are supported, default is 'LFA'
+	color : string
+		color of regions, default is 'green'
 
 
+	Returns
+	-------
+	None
+
+
+	Notes
+	-----
+	Required modules: astropy, numpy, regions
+	Developed using astropy 4.0.2, numpy 1.19.2, regions 0.5 in iPython 7.19.0 and Python 3.8.5
+	Author: R. C. Levy (rlevy.astro@gmail.com)
+	Last Updated: 2022-01-21
+	Change log:
+		2022-01-21 : file created
+
+	Examples
+	--------
+	>> ipython
+	>> from astropy.coordinates import SkyCoord
+	>> from mkGREATfootprint import mk_great_footprint
+	>> center = SkyCoord('13h05m27.2776s','-49d28m5.556s') #NGC4945
+	>> mk_great_footprint(center,array_rot=0.,which_config='LFA',color='cyan')
+	>> #output region file has the name SOFIA_upGREAT_[which_config]_Cen[center]_Rot[array_rot].reg
+	'''
+
+	import numpy as np
 	from astropy.coordinates import SkyCoord,Angle,concatenate,SkyOffsetFrame
 	from regions import CircleSkyRegion,Regions
-	import numpy as np
-	import astropy.units as u
 
-	def rotate(origin, point, angle):
-		"""
-		Rotate a point counterclockwise by a given angle around a given origin.
-
-		The angle should be given in degrees.
-
-		Based on https://stackoverflow.com/questions/34372480/rotate-point-about-another-point-in-degrees-python
-		"""
-		ox = origin.ra
-		oy = origin.dec
-		px = point.ra
-		py = point.dec
-
-		qx = ox+np.cos(np.radians(angle))*(px-ox)-np.sin(np.radians(angle))*(py-oy)
-		qy = oy+np.sin(np.radians(angle))*(px-ox)+np.cos(np.radians(angle))*(py-oy)
-		
-		point_rot = SkyCoord(qx,qy)
-		return point_rot
 
 	#get radius of each pixel, from https://www-sofia.atlassian.net/wiki/spaces/OHFC1/pages/1147523/6.+GREAT#Table6-1
 	#get linear separation of pixel centers, from #https://www-sofia.atlassian.net/wiki/spaces/OHFC1/pages/1147523/6.+GREAT#Figure6-3
 	if which_config == 'LFA':
-		#radius = Angle(14.1/2,'arcsec') 
-		radius = Angle(15.1/2,'arcsec')
+		radius = Angle(14.1/2,'arcsec')
 		separation = Angle(31.7,'arcsec') 
 	elif which_config == 'HFA':
 		radius = Angle(6.3/2,'arcsec')
