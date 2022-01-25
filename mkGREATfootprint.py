@@ -24,9 +24,10 @@ def mk_great_footprint(center,array_rot=0.,which_config='LFA',color='green'):
 	Required modules: astropy, numpy, regions
 	Developed using astropy 4.0.2, numpy 1.19.2, regions 0.5 in iPython 7.19.0 and Python 3.8.5
 	Author: R. C. Levy (rlevy.astro@gmail.com)
-	Last Updated: 2022-01-21
+	Last Updated: 2022-01-24
 	Change log:
 		2022-01-21 : file created
+		2022-01-24 : generates the footprints in the correct order as numbered in the handbook, https://www-sofia.atlassian.net/wiki/spaces/OHFC1/pages/1147523/6.+GREAT#Figure6-3
 
 
 	Examples
@@ -58,7 +59,7 @@ def mk_great_footprint(center,array_rot=0.,which_config='LFA',color='green'):
 
 	#get coordinates of the surrounding pixels
 	#account for any rotation of the array too
-	angles = np.radians(np.arange(0,360,60)+30+array_rot)
+	angles = np.radians(np.arange(0,360,60)-150+array_rot)
 	other_pixels = center.directional_offset_by(angles,separation)
 	pixel_coords = concatenate((center,other_pixels))
 
