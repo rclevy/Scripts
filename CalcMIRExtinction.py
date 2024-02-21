@@ -81,7 +81,7 @@ flux_ratio = 10**(-target_A/2.5)
 
 
 #print the results
-if isinstance(target_wl,np.float) and target_wl > 13:
+if isinstance(target_wl,float) and target_wl > 13:
 	print('Warning: Target wavelength is outside nominal range. Use caution when interpreting these values.\n')
 
 
